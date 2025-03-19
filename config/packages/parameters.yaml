@@ -1,0 +1,2 @@
+parameters:
+    redis_dsn: 'tcp://172.19.0.4:6379' 

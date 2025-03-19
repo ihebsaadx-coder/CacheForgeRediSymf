@@ -1,0 +1,7 @@
+framework:
+    cache:
+        pools:
+            app.cache:
+                adapter: 'cache.adapter.redis'
+                default_lifetime: 3600
+                provider: 'redis://172.19.0.4:6379'  # This will use the Redis URL defined in the environment

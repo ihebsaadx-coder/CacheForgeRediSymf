@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{# Run `composer require symfony/webpack-encore-bundle`
+				and uncomment the following Encore helpers to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('appcss') }}
+			{{ encore_entry_link_tags('bootstrap') }}
+			{{ encore_entry_link_tags('font-css')}}
+		{# //	{{ encore_entry_link_tags('select2css')}} #}
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css">
+		{% endblock %}
+
+		<style>
+			* {
+				line-height: 20px;
+			}
+
+			.ui-helper-hidden-accessible {
+				display: none;
+			}
+
+			.ui-widget.ui-widget-content {
+				z-index: 9999999999999999;
+			}
+
+			#flasher-container-top-right {
+				left: 50% !important;
+				position: fixed !important;
+				transform: translate(-50%, 50%) !important;
+				color: #fff !important;
+				top: 20% !important;
+			}
+			.example-wrapper {
+  margin: 1em auto;
+  max-width: 100%;
+  width: 95%;
+  background: #ececec;
+}
+
+.example-wrapper code {
+  background: #f5f5f5;
+  padding: 2px 6px;
+}
+
+.jumbotron h1 {
+  color: #555;
+  font-size: 28px;
+  font-weight: 400;
+  float: none;
+  text-shadow: 0 1px 0 #ccc;
+  margin-left: 20px;
+  position: relative;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 25px;
+}
+
+.jumbotron h4 {
+  color: #555;
+  float: none;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 26px;
+}
+
+.jumbotron {
+  padding: 2rem 2rem;
+  padding-bottom: 3rem;
+}
+
+.well {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.well blockquote {
+  border-color: #ddd;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.well-lg {
+  padding: 24px;
+  border-radius: 6px;
+}
+
+.well-sm {
+  padding: 9px;
+  border-radius: 3px;
+}
+
+.card {
+  width: 80%;
+  margin: auto;
+  border-radius: 10px !important;
+  margin-top: 10px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.logo {
+  color: #fff;
+  margin-left: 10px;
+}
+
+.navbar-primary {
+  height: 52px;
+  background-color: #222221;
+}
+
+.navbar-secondary {
+
+  background-color: #0080ff;
+}
+
+.fa {
+  color: #fff;
+}
+
+.menu-label {
+  color: #fff;
+  font-weight: bold;
+}
+
+.menu-user {
+  margin-right: 20px;
+}
+
+.form-group {
+  margin-top: 10px;
+}
+
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#btn {
+  height: 23px;
+  padding: 0px;
+  width: 83px;
+  font-size: 0.9rem;
+}
+
+.btna {
+  font-size: 0.7rem !important;
+}
+
+
+
+#btni {
+  background-color: #222221;
+  border-color: #0b0b0b;
+}
+
+
+#searchbar {
+  background-color: rgb(236, 236, 236);
+  height: 47px;
+  padding-top: 4px;
+}
+
+#example_filter>label {
+  float: right;
+}
+
+.pagination {
+  float: right;
+}
+
+#example2_filter>label {
+  float: right;
+}
+
+.pagination2 {
+  float: right;
+}
+
+
+#example3_filter>label {
+  float: right;
+}
+
+
+#example4_filter>label {
+  float: right;
+}
+
+
+table.table {
+  table-layout: fixed;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.table thead>tr>th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+
+#example4_filter>label {
+  float: right;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+.modal-backdrop.fade.in {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+#rounded-pil {
+  font-size: 14px;
+}
+
+.tooltip-color {
+  color: red
+}
+
+.algolia-autocomplete {
+  width: 100%;
+}
+
+.algolia-autocomplete .aa-input,
+.algolia-autocomplete .aa-hint {
+  width: 100%;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+}
+
+.numDPI {
+  /* margin-bottom: 2%; */
+  /* margin-top: 2%; */
+}
+
+.titreInvention {
+  /* margin-top: 2%; */
+  /* margin-bottom: 2%; */
+}
+
+.commentDPI {
+  /* margin-bottom: 2%; */
+}
+
+#flasher-container-top-right {
+  left: 50% !important;
+  position: fixed !important;
+  transform: translate(-50%, 50%) !important;
+  color: #fff !important;
+  top: 20% !important;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #b2d7ff;
+}
+
+.well {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.well blockquote {
+  border-color: #ddd;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.well-lg {
+  padding: 24px;
+  border-radius: 6px;
+}
+
+.well-sm {
+  padding: 9px;
+  border-radius: 3px;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 70px;
+  height: 70px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+#header {
+  height: 62px;
+  position: relative;
+  width: 100%;
+  /*z-index: -7;*/
+  background: #000;
+}
+
+#header h1 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#header h1 {
+  padding-left: 10px;
+  line-height: 66px;
+  overflow: hidden;
+  position: relative;
+  top: -2px;
+  width: auto;
+  margin-top: 0;
+}
+
+#user-nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 11;
+  margin: 0;
+}
+
+#user-nav>ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#user-nav>ul>li {
+  float: left;
+  list-style-type: none;
+  margin: 0;
+  position: relative;
+  /*padding: 5px 0;*/
+  background: #000;
+  border-left: 1px solid #363e48;
+}
+
+#user-nav>ul>li>a {
+  cursor: pointer;
+  padding: 15px 10px;
+  display: block;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.navbar-inverse .brand,
+.navbar-inverse .nav>li>a {
+  color: #999;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+#user-nav>ul>li.open>a,
+#user-nav>ul>li>a:hover {
+  color: #fff;
+  background: 0 0;
+  text-decoration: none;
+}
+
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+}
+
+.col-md-4 {
+  float: left;
+}
+
+.styleText {
+  width: 100%;
+  font-family: inherit;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  box-shadow: 4px 4px 4px #ddd;
+  padding-top: 5px;
+  padding: 19px;
+  font-size: 19px;
+  background-color: #f5f5f587;
+  text-shadow: 0 1px 0 #ccc;
+  margin-left: 20px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 25px;
+}
+
+.gris-dark {
+  color: #222221;
+}
+
+.gris-ligth {
+  color: #eee;
+}
+
+.name-formation {
+  border: 1px solid #222221;
+  background: #eee;
+  color: #222221;
+  display: block;
+  text-transform: capitalize;
+}
+
+.bkg-gris {
+  border: 1px solid #222221;
+  background: #eee;
+  padding: 5px 16px;
+}
+
+.border-formation,
+.border-formation tr,
+.border-formation tr th,
+.border-formation tr td {
+  border: 2px solid #222221 !important;
+}
+
+.btn-custom {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.btn-custom:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.jumbotron h1 {
+  color: #555;
+  font-size: 28px;
+  font-weight: 400;
+  float: none;
+  text-shadow: 0 1px 0 #ccc;
+  margin-left: 20px;
+  position: relative;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 25px;
+}
+
+.jumbotron h4 {
+  color: #555;
+  float: none;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 26px;
+}
+
+.jumbotron {
+  padding: 2rem 2rem;
+  padding-bottom: 3rem;
+}
+
+.widthStatus {
+  width: 80px;
+}
+
+td.details-control {
+  background: url("https://datatables.net/examples/resources/details_open.png") no-repeat center center;
+  cursor: pointer;
+}
+
+tr.shown td.details-control {
+  background: url(https://datatables.net/examples/resources/details_close.png) no-repeat center center;
+}}
+		</style>
+	</head>
+	
+	<body>
+		{% block body %}{% endblock %}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+			{{ encore_entry_script_tags('bootstrapjs') }}
+      {{ encore_entry_script_tags('autocomplete') }}
+		{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6006:6006"
+    networks:
+      - redblosymfo
+
+  database:
+    image: mariadb:latest
+    container_name: database
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    volumes:
+      - ./mariadb:/var/lib/mysql
+      - ./backup:/backup
+    networks: 
+      - redblosymfo
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    build:
+      context: ./phpmyadmin
+    restart: always
+    environment:
+      - PMA_ARBITRARY=-1
+      - PMA_HOST=database
+    ports:
+      - "8443:443"
+    volumes:
+      - ./phpmyadmin/config.inc.php:/var/www/html/config.inc.php
+      - ./ssl:/cert
+    depends_on:
+      - database
+    networks: 
+      - redblosymfo
+
+
+  redblosymfo:
+    container_name: redblosymfo
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MAILER_DSN=${MAILER_DSN}
+    build:
+      context: ./
+    volumes:
+      - ./:/var/www/redblosymfo
+    depends_on:
+      - database
+    networks: 
+      - redblosymfo
+
+  apache_all:
+    container_name: apache_all
+    build:
+      context: ./apache2
+    image: bitnami/apache:latest
+    ports:
+      - '443:443'
+    volumes:
+      - ./:/var/www/redblosymfo
+      - ./apache2:/etc/apache2/sites-enabled
+      - ./ssl:/etc/apache2/ssl
+      - ./logs:/logs
+    networks: 
+      - redblosymfo
+
+networks: 
+  redblosymfo:
+    name: redblosymfo
+    driver: bridge

@@ -1,0 +1,56 @@
+{
+  "entrypoints": {
+    "appcss": {
+      "js": [
+        "/build/runtime.js",
+        "/build/appcss.js"
+      ],
+      "css": [
+        "/build/appcss.css"
+      ]
+    },
+    "app": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js-node_modules_core-js_internals_a-constructor_js-no-6bb430.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-68c6c6.js",
+        "/build/app.js"
+      ],
+      "css": [
+        "/build/app.css"
+      ]
+    },
+    "bootstrapjs": {
+      "js": [
+        "/build/runtime.js",
+        "/build/bootstrapjs.js"
+      ]
+    },
+    "bootstrap": {
+      "js": [
+        "/build/runtime.js",
+        "/build/bootstrap.js"
+      ],
+      "css": [
+        "/build/vendors-node_modules_bootstrap_dist_css_bootstrap_min_css.css"
+      ]
+    },
+    "autocomplete": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js-node_modules_core-js_internals_a-constructor_js-no-6bb430.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_at_js-node_modules_core-js_modules_es_array_con-439d5e.js",
+        "/build/autocomplete.js"
+      ]
+    },
+    "font-css": {
+      "js": [
+        "/build/runtime.js",
+        "/build/font-css.js"
+      ],
+      "css": [
+        "/build/vendors-node_modules_font-awesome_css_font-awesome_min_css.css"
+      ]
+    }
+  }
+}
