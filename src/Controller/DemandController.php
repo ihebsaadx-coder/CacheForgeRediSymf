@@ -11,8 +11,6 @@ use App\Entity\GroupVendor;
 use App\Entity\ResponsablesRH;
 use App\Entity\Salarie;
 use App\Entity\Signatories;
-use App\Entity\TELETRAVAIL;
-use App\Entity\TeletravailST;
 use App\Entity\TestRedis;
 use App\Form\DemandFormType;
 use App\Form\TestRedisType;
@@ -47,46 +45,11 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class DemandController extends AbstractController
 {
-    /**
-     * @var string
-     */
 
-    private $url_activiti_startprocess;
-    /**
-     * @var string
-     */
 
-    private $token_activiti;
 
-    /**
-     * @var string
-     */
 
-    private $server_activiti;
 
-    /**
-     * @var string
-     */
-
-    private $url_cockpit;
-
-    /**
-     * @var string
-     */
-
-    private $sp_wsdl;
-
-    /**
-     * @var string
-     */
-
-    private $sp_username;
-
-    /**
-     * @var string
-     */
-
-    private $sp_password;
 
 
     /**
@@ -101,26 +64,12 @@ class DemandController extends AbstractController
      */
 
     public function __construct(
-        string $url_activiti_startprocess,
-        string $token_activiti,
-        string $server_activiti,
-        string $url_cockpit,
-        string $sp_wsdl,
-        string $sp_username,
-        string $sp_password,
         SerializerInterface $serializer,
         EntityManagerInterface $em,
         CacheItemPoolInterface $cache,
         MessageBusInterface $bus
 
     ) {
-        $this->url_activiti_startprocess = $url_activiti_startprocess;
-        $this->token_activiti = $token_activiti;
-        $this->server_activiti = $server_activiti;
-        $this->url_cockpit = $url_cockpit;
-        $this->sp_wsdl = $sp_wsdl;
-        $this->sp_username = $sp_username;
-        $this->sp_password = $sp_password;
         $this->serializer = $serializer;
         $this->em = $em;
         $this->cache = $cache;
@@ -145,7 +94,6 @@ class DemandController extends AbstractController
         $form_demand->handleRequest($request);
         if ($form_demand->isSubmitted() && $form_demand->isValid() && $request->isMethod('POST')) {
         }
-
 
         return $this->render('demand/index.html.twig', [
             'username' => $fullname,
