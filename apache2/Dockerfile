@@ -1,8 +1,5 @@
 FROM debian:bullseye
 
-ENV http_proxy http://proxy.dsi.scom:8080
-ENV https_proxy http://proxy.dsi.scom:8080
-ENV no_proxy .scom,.comon,.sagem,localhost,127.0.0.1
 
 ENV HTTPD_PREFIX /usr/local/apache2
 ENV PATH $HTTPD_PREFIX/bin:$PATH
